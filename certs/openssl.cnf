@@ -1,0 +1,20 @@
+[ req ]
+default_bits       = 2048
+default_md         = sha256
+prompt             = yes
+distinguished_name = dn
+x509_extensions    = v3_req
+
+[ dn ]
+C  = MG
+ST = Madagascar
+L  = Antananarivo
+O  = LiveShopping
+OU = Dev
+CN = localhost
+
+[ v3_req ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = localhost
