@@ -229,18 +229,9 @@ setInterval(() => {
     }
 }, 60000);
 // Démarrage du serveur
-const PORT = 9090;
-server.listen(PORT, '0.0.0.0', () => {
-    const protocol = useHTTPS ? 'wss' : 'ws';
-    console.log(`:fusée: Serveur ${protocol.toUpperCase()} démarré sur:`);
-    console.log(`   - Local: ${protocol}://localhost:${PORT}`);
-    console.log(`   - Réseau: ${protocol}://${LOCAL_IP}:${PORT}`);
-    console.log(`   - Toutes interfaces: ${protocol}://0.0.0.0:${PORT}`);
-    if (!useHTTPS) {
-        console.log(`\n:danger:  ATTENTION: Mode HTTP non sécurisé activé`);
-        console.log(`   Pour la production, générez des certificats SSL avec:`);
-        console.log(`   openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes`);
-    }
+const PORT = process.env.PORT || 9090;
+server.listen(PORT, () => {
+  console.log(`Serveur WebSocket lancé sur wss://localhost:${PORT}`);
 });
 // Gestion des signaux pour fermeture propre
 process.on('SIGINT', () => {
