@@ -22,7 +22,11 @@ console.log(`IP du serveur: ${LOCAL_IP}`);
 const PORT = process.env.PORT || 9090;
 
 // Création du serveur HTTP
-const server = http.createServer();
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('WebSocket Signaling Server is running\n');
+});
+
 const wss = new WebSocket.Server({ server });
 
 // Stockage des connexions
